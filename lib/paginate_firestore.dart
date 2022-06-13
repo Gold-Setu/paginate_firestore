@@ -48,6 +48,7 @@ class PaginateFirestore extends StatefulWidget {
     this.isLive = false,
     this.includeMetadataChanges = false,
     this.options,
+    this.cacheExtent,
   }) : super(key: key);
 
   final Widget bottomLoader;
@@ -72,6 +73,7 @@ class PaginateFirestore extends StatefulWidget {
   final DocumentSnapshot? startAfterDocument;
   final Widget? header;
   final Widget? footer;
+  final double? cacheExtent;
 
   /// Use this only if `isLive = false`
   final GetOptions? options;
@@ -176,6 +178,7 @@ class _PaginateFirestoreState extends State<PaginateFirestore> {
 
   Widget _buildGridView(PaginationLoaded loadedState) {
     var gridView = CustomScrollView(
+       cacheExtent: widget.cacheExtent,
       reverse: widget.reverse,
       controller: widget.scrollController,
       shrinkWrap: widget.shrinkWrap,
@@ -226,6 +229,7 @@ class _PaginateFirestoreState extends State<PaginateFirestore> {
 
   Widget _buildListView(PaginationLoaded loadedState) {
     var listView = CustomScrollView(
+      cacheExtent: widget.cacheExtent,
       reverse: widget.reverse,
       controller: widget.scrollController,
       shrinkWrap: widget.shrinkWrap,
